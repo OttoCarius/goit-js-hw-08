@@ -35,9 +35,13 @@ function onFormsubmit(e) {
     email: email.value,
     message: message.value,
   };
-  console.log('This is Form Data:', formData);
-  e.currentTarget.reset();
-  localStorage.removeItem(STORAGE_KEY);
+  if (formData.email && formData.message) {
+    console.log('This is Form Data:', formData);
+    e.currentTarget.reset();
+    localStorage.removeItem(STORAGE_KEY);
+  } else {
+    return alert('Заповніть всі поля');
+  }
 }
 
 form.addEventListener('input', throttle(onFormInput, 500));
